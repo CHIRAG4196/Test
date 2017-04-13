@@ -1,18 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dip"
-    tools:context="com.example.utsav.test.activity.fragment.Signup">
+    tools:context="com.example.utsav.test.activity.UpdateStudentDataActivity">
+
     <android.support.v7.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="15dip"
         android:text="Sign in"
-        android:textSize="22sp"
+        android:textSize="25sp"
         android:textStyle="bold|italic" />
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -40,33 +43,6 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true">
-
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/et_password"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Password"
-            android:inputType="textPassword" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#000000"
-        app:passwordToggleEnabled="true">
-
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/et_cfpassword"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Confirm password"
-            android:inputType="textPassword" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.AppCompatEditText
@@ -76,40 +52,6 @@
             android:hint="Mobile No"
             android:inputType="number" />
     </android.support.design.widget.TextInputLayout>
-
-    <RadioGroup
-        android:id="@+id/rg_identity"
-        android:layout_width="match_parent"
-        android:layout_height="40dip"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:text="Identity"
-            android:textSize="18sp"
-
-            />
-
-        <android.support.v7.widget.AppCompatRadioButton
-            android:id="@+id/rb_teacher1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dip"
-            android:text="Teacher"
-            android:textSize="18sp" />
-
-        <android.support.v7.widget.AppCompatRadioButton
-            android:id="@+id/rb_student1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dip"
-            android:checked="true"
-            android:text="Student"
-            android:textSize="18sp" />
-    </RadioGroup>
 
     <RadioGroup
         android:id="@+id/rg_gender"
@@ -123,17 +65,13 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="25dp"
             android:text="Gender"
-
-            android:textSize="18sp"
-
-            />
+            android:textSize="18sp" />
 
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/rb_male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="50dp"
-
             android:checked="true"
             android:text="Male"
             android:textSize="18sp" />
@@ -146,28 +84,28 @@
             android:text="Female"
             android:textSize="18sp" />
     </RadioGroup>
-<android.support.v7.widget.AppCompatTextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:text="Select below Batch"
-    android:textSize="18sp"
-    />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dip"
+        android:gravity="center"
+        android:text="Select below Batch"
+        android:textSize="18sp" />
+
     <android.support.v7.widget.AppCompatSpinner
         android:id="@+id/spn_batch"
         android:layout_width="match_parent"
-        android:layout_height="35dip"
+        android:layout_height="40dip"
+        android:layout_marginTop="5dip"
         android:entries="@array/batch"
         android:spinnerMode="dialog"
-        android:textAlignment="center" >
+        android:textAlignment="center" />
 
-        </android.support.v7.widget.AppCompatSpinner>
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_signup"
+        android:id="@+id/btn_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Signup"
-        />
-
+        android:text="Update" />
 </LinearLayout>

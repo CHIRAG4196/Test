@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.utsav.test.activity.fragment.Attendence">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_attendance"
+        android:layout_width="match_parent"
+        android:layout_height="420dip" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_submit_attendance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dip"
+        android:text="Submit" />
+
+</LinearLayout>

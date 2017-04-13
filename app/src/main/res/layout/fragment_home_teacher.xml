@@ -1,0 +1,40 @@
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:columnCount="2"
+    android:padding="20dip"
+    tools:context="com.example.utsav.test.activity.fragment.HomeTeacher">
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_manage_student_record"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="20dp"
+        android:text="Manage Student Record" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_take_attendance"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:text="Take Attendance" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_view_attendance"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="20dp"
+        android:text="View Student Attendance" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_rate_student"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:text="Rate Student" />
+
+</GridLayout>
