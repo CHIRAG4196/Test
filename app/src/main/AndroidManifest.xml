@@ -22,7 +22,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.RecycleActivity" />
         <activity android:name=".activity.UpdateStudentDataActivity" />
-        <activity android:name=".activity.SettingActivity"></activity>
+        <activity android:name=".activity.FeddbackActivity"></activity>
     </application>
 
 </manifest>
