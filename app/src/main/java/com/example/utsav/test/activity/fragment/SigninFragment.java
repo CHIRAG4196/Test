@@ -1,8 +1,5 @@
 package com.example.utsav.test.activity.fragment;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,8 +17,10 @@ import android.widget.Toast;
 
 import com.example.utsav.test.R;
 import com.example.utsav.test.activity.MainActivity;
-import com.example.utsav.test.activity.NavigationActivity;
 import com.example.utsav.test.activity.database.DatabaseHelper;
+import com.example.utsav.test.activity.model.User;
+
+import java.util.ArrayList;
 
 
 public class SigninFragment extends Fragment {
@@ -38,8 +37,9 @@ public class SigninFragment extends Fragment {
     private RadioGroup rgUser;
     private AppCompatRadioButton rbUser;
     private AppCompatTextView tvForgot;
-    private SharedPreferences preferences;
+    //  private SharedPreferences preferences;
     private DatabaseHelper databaseHelper;
+    private ArrayList<User> userArrayList;
 
 
     public SigninFragment() {
@@ -84,16 +84,18 @@ public class SigninFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        userArrayList = new ArrayList<>();
+
         databaseHelper = new DatabaseHelper(getActivity());
         int count = (int) databaseHelper.getUserCount();
         Toast.makeText(getActivity(), "" + count, Toast.LENGTH_SHORT).show();
-        preferences = getActivity().getSharedPreferences("SignupFragment", Context.MODE_PRIVATE);
-
-        if (preferences.getBoolean("login", false)) {
-            startActivity(new Intent(getActivity(), NavigationActivity.class));
-            getActivity().finish();
-
-        } else {
+//        preferences = getActivity().getSharedPreferences("SignupFragment", Context.MODE_PRIVATE);
+//
+//        if (preferences.getBoolean("login", false)) {
+//            startActivity(new Intent(getActivity(), NavigationActivity.class));
+//            getActivity().finish();
+//
+//        } else {
             etEmail = (AppCompatEditText) view.findViewById(R.id.et_signin_email);
             etPassword = (AppCompatEditText) view.findViewById(R.id.et_signin_password);
             btnSignin = (AppCompatButton) view.findViewById(R.id.btn_signin);
@@ -104,6 +106,8 @@ public class SigninFragment extends Fragment {
             int selectedid = rgUser.getCheckedRadioButtonId();
             rbUser = (AppCompatRadioButton) view.findViewById(selectedid);
 
+        userArrayList = databaseHelper.getAllUserData();
+
             listners();
             tvForgot.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -112,7 +116,7 @@ public class SigninFragment extends Fragment {
                 }
             });
 
-        }
+        //   }
     }
 
     private void listners() {
@@ -184,17 +188,22 @@ public class SigninFragment extends Fragment {
             etPassword.setError("enter password ");
             return;
         }
-        if (email.equals(preferences.getString("email", "no value")) && password.equals(preferences.getString("password", "no value"))) {
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean("login", true);
-            editor.apply();
-            Intent intent = new Intent(getActivity(), NavigationActivity.class);
-            //intent.putExtra("usertype", rbUser.getText().toString());
-            startActivity(intent);
-            getActivity().finish();
+//        if (email.equals(preferences.getString("email", "no value")) && password.equals(preferences.getString("password", "no value"))) {
+//            SharedPreferences.Editor editor = preferences.edit();
+//            editor.putBoolean("login", true);
+//            editor.apply();
+//            Intent intent = new Intent(getActivity(), NavigationActivity.class);
+//            //intent.putExtra("usertype", rbUser.getText().toString());
+//            startActivity(intent);
+//            getActivity().finish();
+//
+//
+//            return;
+//        }
+    }
+
+    private void Authentication(String email, String password, String userType) {
 
 
-            return;
-        }
     }
 }

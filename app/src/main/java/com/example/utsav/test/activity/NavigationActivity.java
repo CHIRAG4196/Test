@@ -22,7 +22,6 @@ import android.view.View;
 
 import com.example.utsav.test.R;
 import com.example.utsav.test.activity.fragment.HomeStudentFragment;
-import com.example.utsav.test.activity.fragment.SigninFragment;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -111,7 +110,7 @@ public class NavigationActivity extends AppCompatActivity
         } else if (id == R.id.nav_rate_app) {
 
         } else if (id == R.id.nav_signout) {
-            signoutUser();
+            //signoutUser();
 
         } else if (id == R.id.nav_view) {
 
@@ -122,15 +121,15 @@ public class NavigationActivity extends AppCompatActivity
         return true;
     }
 
-    private void signoutUser() {
-        SharedPreferences.Editor editor = preferencesEmail.edit();
-        editor.putBoolean("login", false);
-        editor.apply();
-        SigninFragment signinFragment = SigninFragment.newInstance("", "");
-        MainActivity mainActivity = new MainActivity();
-        mainActivity.addFragment(R.id.container, signinFragment);
-        finish();
-    }
+//    private void signoutUser() {
+//        SharedPreferences.Editor editor = preferencesEmail.edit();
+//        editor.putBoolean("login", false);
+//        editor.apply();
+//        SigninFragment signinFragment = SigninFragment.newInstance("", "");
+//        MainActivity mainActivity = new MainActivity();
+//        mainActivity.addFragment(R.id.container, signinFragment);
+//        finish();
+//    }
 
     private void openDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(NavigationActivity.this);

@@ -2,12 +2,15 @@ package com.example.utsav.test.activity.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.utsav.test.activity.model.Attendance;
 import com.example.utsav.test.activity.model.User;
+
+import java.util.ArrayList;
 
 /**
  * Created by utsav on 14-04-2017.
@@ -114,6 +117,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //        contentValues.put(BATCH_ID, String.valueOf(attendance.getBatch()));
         database.insert(TABLE_ATTENDANCE, null, contentValues);
         database.close();
+    }
+
+    public ArrayList<User> getAllUserData() {
+        ArrayList<User> userArrayList = new ArrayList<>();
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = database.rawQuery("Select * from " + TABLE_USER, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        do {
+            User user = new User();
+            user.setUserId(cursor.getInt(0));
+            user.setName(cursor.getString(1));
+            user.setEmail(cursor.getString(2));
+            user.setPassword(cursor.getString(3));
+            user.setMobileNo(cursor.getString(4));
+            user.setGender(cursor.getString(5));
+            user.setIdentity(cursor.getString(6));
+            user.setBatchName(cursor.getString(7));
+            userArrayList.add(user);
+        } while (cursor.moveToNext());
+        cursor.close();
+        database.close();
+        return userArrayList;
     }
 
     public long getUserCount() {

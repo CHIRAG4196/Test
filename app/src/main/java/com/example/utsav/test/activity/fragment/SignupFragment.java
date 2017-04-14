@@ -1,8 +1,6 @@
 package com.example.utsav.test.activity.fragment;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -42,7 +40,6 @@ public class SignupFragment extends Fragment {
     private AppCompatSpinner spnBatch;
     private RadioGroup rgIdentity, rgGender;
     private AppCompatRadioButton rbIdentity, rbGender, rbTeacher, rbStudent;
-    private SharedPreferences preferencesEmail;
 
 
     public SignupFragment() {
@@ -87,7 +84,7 @@ public class SignupFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         databaseHelper = new DatabaseHelper(getActivity());
-        preferencesEmail = getActivity().getSharedPreferences("SignupFragment", Context.MODE_PRIVATE);
+
         etName = (AppCompatEditText) view.findViewById(R.id.et_user);
         etEmail = (AppCompatEditText) view.findViewById(R.id.et_email);
         etPassword = (AppCompatEditText) view.findViewById(R.id.et_password);
@@ -138,11 +135,8 @@ public class SignupFragment extends Fragment {
 
         final String password = etPassword.getText().toString();
         String confirmPassword = etConfirmPassword.getText().toString();
-        SharedPreferences.Editor edit = preferencesEmail.edit();
-        edit.putString("email", email);
-        edit.putString("password", password);
 
-        edit.apply();
+
         if (TextUtils.isEmpty(name)) {
             etName.setError("enter name");
             return;
