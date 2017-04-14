@@ -1,6 +1,7 @@
 package com.example.utsav.test.activity.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.utsav.test.R;
+import com.example.utsav.test.activity.UpdateStudentDataActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -73,6 +75,13 @@ public class HomeTeacherFragment extends Fragment {
         btnTakeAttendance = (AppCompatButton) view.findViewById(R.id.btn_take_attendance);
         btnRateStudent = (AppCompatButton) view.findViewById(R.id.btn_rate_student);
         btnViewAttendance = (AppCompatButton) view.findViewById(R.id.btn_view_attendance);
+
+        btnManageStudentRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), UpdateStudentDataActivity.class));
+            }
+        });
 
     }
 }
