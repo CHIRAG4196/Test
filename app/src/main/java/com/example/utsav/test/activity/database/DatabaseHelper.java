@@ -1,8 +1,13 @@
 package com.example.utsav.test.activity.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.utsav.test.activity.model.Attendance;
+import com.example.utsav.test.activity.model.Batch;
+import com.example.utsav.test.activity.model.User;
 
 /**
  * Created by utsav on 14-04-2017.
@@ -80,6 +85,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BATCH);
 
         onCreate(db);
+
+    }
+
+    public void insertUserData(User user) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(USER_NAME, user.getName());
+        contentValues.put(USER_EMAIL, user.getEmail());
+        contentValues.put(USER_PASSWORD, user.getPassword());
+        contentValues.put(USER_MOBILE_NO, user.getMobileNo());
+        contentValues.put(USER_IDENTITY, user.getIdentity());
+        contentValues.put(USER_GENDER, user.getGender());
+        contentValues.put(BATCH_ID, String.valueOf(user.getBatch()));
+        database.insert(TABLE_USER, null, contentValues);
+        database.close();
+    }
+
+    public void insertAttendanceData(Attendance attendance) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(USER_ID, String.valueOf(attendance.getUser()));
+        contentValues.put(ATTENDANCE_DATE, attendance.getDate());
+        contentValues.put(ATTENDANCE_STATUS, attendance.getStatus());
+        contentValues.put(ATTENDANCE_TIME, attendance.getTime());
+        contentValues.put(BATCH_ID, String.valueOf(attendance.getBatch()));
+        database.insert(TABLE_ATTENDANCE, null, contentValues);
+        database.close();
+    }
+
+    public void insertBatchData(Batch batch) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(BATCH_NAME, batch.getName());
+        contentValues.put(BATCH_ID, batch.getId());
+        database.insert(TABLE_ATTENDANCE, null, contentValues);
+        database.close();
+
 
     }
 }

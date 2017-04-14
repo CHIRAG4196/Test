@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.utsav.test.R;
 import com.example.utsav.test.activity.MainActivity;
+import com.example.utsav.test.activity.database.DatabaseHelper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +31,7 @@ public class SignupFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private DatabaseHelper databaseHelper;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -82,6 +84,7 @@ public class SignupFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        databaseHelper = new DatabaseHelper(getActivity());
         preferencesEmail = getActivity().getSharedPreferences("SignupFragment", Context.MODE_PRIVATE);
         etName = (AppCompatEditText) view.findViewById(R.id.et_user);
         etEmail = (AppCompatEditText) view.findViewById(R.id.et_email);
@@ -91,6 +94,12 @@ public class SignupFragment extends Fragment {
         spnBatch = (AppCompatSpinner) view.findViewById(R.id.spn_batch);
         rgGender = (RadioGroup) view.findViewById(R.id.rg_gender);
         rgIdentity = (RadioGroup) view.findViewById(R.id.rg_identity);
+
+        int selectGender = rgGender.getCheckedRadioButtonId();
+        rbGender = (AppCompatRadioButton) view.findViewById(selectGender);
+        int selectIdentity = rgIdentity.getCheckedRadioButtonId();
+        rbIdentity = (AppCompatRadioButton) view.findViewById(selectIdentity);
+
         btnSignup = (AppCompatButton) view.findViewById(R.id.btn_signup);
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +113,12 @@ public class SignupFragment extends Fragment {
 
     private void registerUser() {
         String email = etEmail.getText().toString().trim();
+        String name = etName.getText().toString();
+        String mobile = etMobile.getText().toString().trim();
+        String gender = rbGender.getText().toString();
+        String identity = rbIdentity.getText().toString();
+        String batch = spnBatch.getSelectedItem().toString();
+
         final String password = etPassword.getText().toString();
         String confirmPassword = etConfirmPassword.getText().toString();
         SharedPreferences.Editor edit = preferencesEmail.edit();
@@ -111,8 +126,10 @@ public class SignupFragment extends Fragment {
         edit.putString("password", password);
 
         edit.apply();
-
-
+        if (TextUtils.isEmpty(name)) {
+            etName.setError("enter name");
+            return;
+        }
         if (TextUtils.isEmpty(email)) {
             etEmail.setError("enter email");
             Toast.makeText(getActivity(), "enter email", Toast.LENGTH_SHORT).show();
