@@ -6,13 +6,15 @@
     android:orientation="vertical"
     android:padding="15dip"
     tools:context="com.example.utsav.test.activity.fragment.SignupFragment">
+
     <android.support.v7.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Sign in"
+        android:text="Sign Up"
         android:textSize="22sp"
         android:textStyle="bold|italic" />
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -146,28 +148,29 @@
             android:text="Female"
             android:textSize="18sp" />
     </RadioGroup>
-<android.support.v7.widget.AppCompatTextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:text="Select below Batch"
-    android:textSize="18sp"
-    />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Select below Batch"
+        android:textSize="18sp" />
+
     <android.support.v7.widget.AppCompatSpinner
         android:id="@+id/spn_batch"
         android:layout_width="match_parent"
         android:layout_height="35dip"
         android:entries="@array/batch"
         android:spinnerMode="dialog"
-        android:textAlignment="center" >
+        android:textAlignment="center">
 
-        </android.support.v7.widget.AppCompatSpinner>
+    </android.support.v7.widget.AppCompatSpinner>
+
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Signup"
-        />
+        android:text="Signup" />
 
 </LinearLayout>

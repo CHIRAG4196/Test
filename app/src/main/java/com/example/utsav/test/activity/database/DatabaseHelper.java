@@ -2,11 +2,11 @@ package com.example.utsav.test.activity.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.utsav.test.activity.model.Attendance;
-import com.example.utsav.test.activity.model.Batch;
 import com.example.utsav.test.activity.model.User;
 
 /**
@@ -34,14 +34,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String ATTENDANCE_STATUS = "attendance_status";
 
 
-    private static final String TABLE_BATCH = "batch";
-    private static final String BATCH_ID = "batch_id";
+    //    private static final String TABLE_BATCH = "batch";
+//    private static final String BATCH_ID = "batch_id";
     private static final String BATCH_NAME = "batch_name";
 
-    private static final String CREATE_TABLE_BATCH = "" +
-            "create table " + TABLE_BATCH + " (" +
-            BATCH_ID + " INTEGER PRIMARY KEY, " +
-            BATCH_NAME + " TEXT)";
+//    private static final String CREATE_TABLE_BATCH = "" +
+//            "create table " + TABLE_BATCH + " (" +
+//            BATCH_ID + " INTEGER PRIMARY KEY, " +
+//            BATCH_NAME + " TEXT)";
 
 
     private static final String CREATE_TABLE_ATTENDANCE = "" +
@@ -51,7 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ATTENDANCE_DATE + " TEXT, " +
             ATTENDANCE_TIME + " TEXT, " +
             ATTENDANCE_STATUS + " TEXT, " +
-            BATCH_ID + " INTEGER)";
+            BATCH_NAME + " TEXT)";
 
 
     private static final String CREATE_TABLE_USER = "" +
@@ -63,7 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             USER_MOBILE_NO + " TEXT, " +
             USER_IDENTITY + " TEXT, " +
             USER_GENDER + " TEXT, " +
-            BATCH_ID + " INTEGER)";
+            BATCH_NAME + " TEXT)";
 
 
     public DatabaseHelper(Context context) {
@@ -74,7 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_USER);
         db.execSQL(CREATE_TABLE_ATTENDANCE);
-        db.execSQL(CREATE_TABLE_BATCH);
+//        db.execSQL(CREATE_TABLE_BATCH);
 
     }
 
@@ -82,7 +82,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ATTENDANCE);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BATCH);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BATCH);
 
         onCreate(db);
 
@@ -98,7 +98,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(USER_MOBILE_NO, user.getMobileNo());
         contentValues.put(USER_IDENTITY, user.getIdentity());
         contentValues.put(USER_GENDER, user.getGender());
-        contentValues.put(BATCH_ID, String.valueOf(user.getBatch()));
+        contentValues.put(BATCH_NAME, user.getBatchName());
         database.insert(TABLE_USER, null, contentValues);
         database.close();
     }
@@ -111,19 +111,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(ATTENDANCE_DATE, attendance.getDate());
         contentValues.put(ATTENDANCE_STATUS, attendance.getStatus());
         contentValues.put(ATTENDANCE_TIME, attendance.getTime());
-        contentValues.put(BATCH_ID, String.valueOf(attendance.getBatch()));
+//        contentValues.put(BATCH_ID, String.valueOf(attendance.getBatch()));
         database.insert(TABLE_ATTENDANCE, null, contentValues);
         database.close();
     }
 
-    public void insertBatchData(Batch batch) {
-        SQLiteDatabase database = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(BATCH_NAME, batch.getName());
-        contentValues.put(BATCH_ID, batch.getId());
-        database.insert(TABLE_ATTENDANCE, null, contentValues);
-        database.close();
-
-
+    public long getUserCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        long cnt = DatabaseUtils.queryNumEntries(db, TABLE_USER);
+        db.close();
+        return cnt;
     }
+
+//    public void insertBatchData(Batch batch) {
+//        SQLiteDatabase database = this.getWritableDatabase();
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(BATCH_NAME, batch.getName());
+////        contentValues.put(BATCH_ID, batch.getId());
+//        database.insert(TABLE_ATTENDANCE, null, contentValues);
+//        database.close();
+//
+//
+//    }
 }

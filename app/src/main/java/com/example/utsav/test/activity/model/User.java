@@ -8,7 +8,7 @@ import android.os.Parcelable;
  */
 
 public class User implements Parcelable {
-    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
+    public static final Creator<User> CREATOR = new Creator<User>() {
         @Override
         public User createFromParcel(Parcel source) {
             return new User(source);
@@ -20,8 +20,7 @@ public class User implements Parcelable {
         }
     };
     private int userId;
-    private String name, email, password, mobileNo, identity, gender;
-    private Batch batch;
+    private String name, email, password, mobileNo, identity, gender, batchName;
 
     public User() {
     }
@@ -34,7 +33,15 @@ public class User implements Parcelable {
         this.mobileNo = in.readString();
         this.identity = in.readString();
         this.gender = in.readString();
-        this.batch = in.readParcelable(Batch.class.getClassLoader());
+        this.batchName = in.readString();
+    }
+
+    public String getBatchName() {
+        return batchName;
+    }
+
+    public void setBatchName(String batchName) {
+        this.batchName = batchName;
     }
 
     public int getUserId() {
@@ -93,14 +100,6 @@ public class User implements Parcelable {
         this.gender = gender;
     }
 
-    public Batch getBatch() {
-        return batch;
-    }
-
-    public void setBatch(Batch batch) {
-        this.batch = batch;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -115,6 +114,6 @@ public class User implements Parcelable {
         dest.writeString(this.mobileNo);
         dest.writeString(this.identity);
         dest.writeString(this.gender);
-        dest.writeParcelable(this.batch, flags);
+        dest.writeString(this.batchName);
     }
 }

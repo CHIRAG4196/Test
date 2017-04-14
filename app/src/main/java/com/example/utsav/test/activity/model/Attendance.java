@@ -22,7 +22,7 @@ public class Attendance implements Parcelable {
     private int id;
     private String date, time, status;
     private User user;
-    private Batch batch;
+
 
     public Attendance() {
     }
@@ -33,7 +33,6 @@ public class Attendance implements Parcelable {
         this.time = in.readString();
         this.status = in.readString();
         this.user = in.readParcelable(User.class.getClassLoader());
-        this.batch = in.readParcelable(Batch.class.getClassLoader());
     }
 
     public int getId() {
@@ -76,13 +75,6 @@ public class Attendance implements Parcelable {
         this.user = user;
     }
 
-    public Batch getBatch() {
-        return batch;
-    }
-
-    public void setBatch(Batch batch) {
-        this.batch = batch;
-    }
 
     @Override
     public int describeContents() {
@@ -96,6 +88,5 @@ public class Attendance implements Parcelable {
         dest.writeString(this.time);
         dest.writeString(this.status);
         dest.writeParcelable(this.user, flags);
-        dest.writeParcelable(this.batch, flags);
     }
 }

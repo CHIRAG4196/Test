@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.utsav.test.R;
 import com.example.utsav.test.activity.MainActivity;
 import com.example.utsav.test.activity.NavigationActivity;
+import com.example.utsav.test.activity.database.DatabaseHelper;
 
 
 public class SigninFragment extends Fragment {
@@ -38,6 +39,7 @@ public class SigninFragment extends Fragment {
     private AppCompatRadioButton rbUser;
     private AppCompatTextView tvForgot;
     private SharedPreferences preferences;
+    private DatabaseHelper databaseHelper;
 
 
     public SigninFragment() {
@@ -82,13 +84,18 @@ public class SigninFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        databaseHelper = new DatabaseHelper(getActivity());
+        int count = (int) databaseHelper.getUserCount();
+        Toast.makeText(getActivity(), "" + count, Toast.LENGTH_SHORT).show();
         preferences = getActivity().getSharedPreferences("SignupFragment", Context.MODE_PRIVATE);
 
         if (preferences.getBoolean("login", false)) {
+            startActivity(new Intent(getActivity(), NavigationActivity.class));
+            getActivity().finish();
 
         } else {
-            etEmail = (AppCompatEditText) view.findViewById(R.id.et_signin);
-            etPassword = (AppCompatEditText) view.findViewById(R.id.et_password);
+            etEmail = (AppCompatEditText) view.findViewById(R.id.et_signin_email);
+            etPassword = (AppCompatEditText) view.findViewById(R.id.et_signin_password);
             btnSignin = (AppCompatButton) view.findViewById(R.id.btn_signin);
             btnSignup = (AppCompatButton) view.findViewById(R.id.btn_signup);
 
@@ -181,8 +188,11 @@ public class SigninFragment extends Fragment {
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean("login", true);
             editor.apply();
-            startActivity(new Intent(getActivity(), NavigationActivity.class));
+            Intent intent = new Intent(getActivity(), NavigationActivity.class);
+            //intent.putExtra("usertype", rbUser.getText().toString());
+            startActivity(intent);
             getActivity().finish();
+
 
             return;
         }

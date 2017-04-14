@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.utsav.test.R;
 import com.example.utsav.test.activity.MainActivity;
 import com.example.utsav.test.activity.database.DatabaseHelper;
+import com.example.utsav.test.activity.model.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,8 +41,9 @@ public class SignupFragment extends Fragment {
     private AppCompatButton btnSignup;
     private AppCompatSpinner spnBatch;
     private RadioGroup rgIdentity, rgGender;
-    private AppCompatRadioButton rbIdentity, rbGender;
+    private AppCompatRadioButton rbIdentity, rbGender, rbTeacher, rbStudent;
     private SharedPreferences preferencesEmail;
+
 
     public SignupFragment() {
         // Required empty public constructor
@@ -89,16 +91,31 @@ public class SignupFragment extends Fragment {
         etName = (AppCompatEditText) view.findViewById(R.id.et_user);
         etEmail = (AppCompatEditText) view.findViewById(R.id.et_email);
         etPassword = (AppCompatEditText) view.findViewById(R.id.et_password);
-        etConfirmPassword = (AppCompatEditText) view.findViewById(R.id.et_confirm_password);
+        etConfirmPassword = (AppCompatEditText) view.findViewById(R.id.et_cfpassword);
         etMobile = (AppCompatEditText) view.findViewById(R.id.et_number);
         spnBatch = (AppCompatSpinner) view.findViewById(R.id.spn_batch);
         rgGender = (RadioGroup) view.findViewById(R.id.rg_gender);
         rgIdentity = (RadioGroup) view.findViewById(R.id.rg_identity);
+        rbStudent = (AppCompatRadioButton) view.findViewById(R.id.rb_student1);
+        rbTeacher = (AppCompatRadioButton) view.findViewById(R.id.rb_teacher1);
+        rbTeacher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spnBatch.setVisibility(View.GONE);
+            }
+        });
+        rbStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spnBatch.setVisibility(View.VISIBLE);
+            }
+        });
 
         int selectGender = rgGender.getCheckedRadioButtonId();
         rbGender = (AppCompatRadioButton) view.findViewById(selectGender);
         int selectIdentity = rgIdentity.getCheckedRadioButtonId();
         rbIdentity = (AppCompatRadioButton) view.findViewById(selectIdentity);
+
 
         btnSignup = (AppCompatButton) view.findViewById(R.id.btn_signup);
         btnSignup.setOnClickListener(new View.OnClickListener() {
@@ -146,6 +163,17 @@ public class SignupFragment extends Fragment {
             return;
         }
         if (checkPassword() == true) {
+
+            User user = new User();
+            user.setName(name);
+            user.setEmail(email);
+            user.setPassword(password);
+            user.setMobileNo(mobile);
+            user.setGender(gender);
+            user.setIdentity(identity);
+            user.setBatchName(batch);
+            databaseHelper.insertUserData(user);
+
             Toast.makeText(getActivity(), "Sucess", Toast.LENGTH_SHORT).show();
             SigninFragment signinFragmentFragment = SigninFragment.newInstance("", "");
             MainActivity mainActivity = (MainActivity) getActivity();
@@ -153,7 +181,7 @@ public class SignupFragment extends Fragment {
 
 
         } else {
-            Toast.makeText(getActivity(), "not same", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Password not same", Toast.LENGTH_SHORT).show();
         }
 
 
