@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="15dip"
-        android:text="Sign in"
+        android:text="Update Data"
         android:textSize="25sp"
         android:textStyle="bold|italic" />
 

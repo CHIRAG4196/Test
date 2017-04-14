@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/background"
-    tools:context="com.example.utsav.test.activity.fragment.Signin">
+    android:orientation="vertical"
+    tools:context="com.example.utsav.test.activity.fragment.SigninFragment">
 
     <android.support.v7.widget.AppCompatTextView
         android:layout_width="wrap_content"
@@ -57,9 +57,9 @@
 <android.support.v7.widget.AppCompatTextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginRight="25dp"
     android:text="Login As"
     android:textSize="18sp"
-    android:layout_marginRight="25dp"
     />
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/rb_teacher"
@@ -94,7 +94,7 @@
         android:orientation="horizontal">
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/bt_signin"
+            android:id="@+id/btn_signin"
             android:layout_width="105dp"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
@@ -104,7 +104,7 @@
             />
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/bt_signup"
+            android:id="@+id/btn_signup"
             android:layout_width="105dp"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"

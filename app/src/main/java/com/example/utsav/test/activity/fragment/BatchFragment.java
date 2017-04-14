@@ -11,10 +11,10 @@ import com.example.utsav.test.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Batch#newInstance} factory method to
+ * Use the {@link BatchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Batch extends Fragment {
+public class BatchFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -25,7 +25,7 @@ public class Batch extends Fragment {
     private String mParam2;
 
 
-    public Batch() {
+    public BatchFragment() {
         // Required empty public constructor
     }
 
@@ -35,11 +35,11 @@ public class Batch extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Batch.
+     * @return A new instance of fragment BatchFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Batch newInstance(String param1, String param2) {
-        Batch fragment = new Batch();
+    public static BatchFragment newInstance(String param1, String param2) {
+        BatchFragment fragment = new BatchFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dip"
-    tools:context="com.example.utsav.test.activity.fragment.Signup">
+    tools:context="com.example.utsav.test.activity.fragment.SignupFragment">
     <android.support.v7.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -5,7 +5,7 @@
     android:background="@color/background"
     android:columnCount="2"
     android:padding="20dp"
-    tools:context="com.example.utsav.test.activity.fragment.Home">
+    tools:context="com.example.utsav.test.activity.fragment.HomeStudentFragment">
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_view_faculty"
